@@ -9,8 +9,8 @@ API for IUGU - http://iugu.com
                 test = true,
                 data = new CreditCard()
                 {
-                    first_name = "Persio",
-                    last_name = "Flexa",
+                    first_name = "Card",
+                    last_name = "Test",
                     month = "05",
                     year = "2018",
                     number = "4111111111111111",
@@ -401,5 +401,6 @@ API for IUGU - http://iugu.com
                 createMarketplaceAccountResult.account_id,
                 createMarketplaceAccountResult.test_api_token,
                 requestMarketplaceAccountVerification);
-}            
+            }
+            
 

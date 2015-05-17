@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DFD0150A-D142-4FF8-812C-8C9537650ADA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ugapi</RootNamespace>
+    <AssemblyName>IuguApi</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Flurl, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Flurl.1.0.7\lib\portable-net40+sl50+win+wpa81+wp80+MonoAndroid10+MonoTouch10\Flurl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Flurl.Http, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Flurl.Http.0.6.0\lib\net45\Flurl.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\MarketplaceAccountBuilder.cs" />
+    <Compile Include="API\MarketplaceBuilder.cs" />
+    <Compile Include="API\TransferBuilder.cs" />
+    <Compile Include="API\SubscriptionBuilder.cs" />
+    <Compile Include="API\PlanBuilder.cs" />
+    <Compile Include="API\InvoiceBuilder.cs" />
+    <Compile Include="API\PaymentBuilder.cs" />
+    <Compile Include="API\CustomerBuilder.cs" />
+    <Compile Include="API\TokenBuilder.cs" />
+    <Compile Include="Model\Request\MarketplaceAccountRequest.cs" />
+    <Compile Include="Model\Request\SubscriptionsRequest.cs" />
+    <Compile Include="Model\Request\PlansRequest.cs" />
+    <Compile Include="Model\Request\InvoicesRequest.cs" />
+    <Compile Include="Model\Request\PaymentMethodRequest.cs" />
+    <Compile Include="Model\Request\CustomersRequest.cs" />
+    <Compile Include="Model\Request\CustomerRequest.cs" />
+    <Compile Include="Model\Request\InvoiceRequest.cs" />
+    <Compile Include="Model\Request\PlanRequest.cs" />
+    <Compile Include="Model\Request\MarketplaceRequest.cs" />
+    <Compile Include="Model\Request\TransferRequest.cs" />
+    <Compile Include="Model\Request\TokenRequest.cs" />
+    <Compile Include="Model\Request\SubscriptionRequest.cs" />
+    <Compile Include="Model\Response\ChargeBankSlipResponse.cs" />
+    <Compile Include="Model\Response\ChargeCreditcardAntiTheftResponse.cs" />
+    <Compile Include="Model\Response\ChargeCreditcardResponse.cs" />
+    <Compile Include="Model\Request\ChargeRequest.cs" />
+    <Compile Include="Model\ITransation.cs" />
+    <Compile Include="API\APIBase.cs" />
+    <Compile Include="API\ChargeBuilder.cs" />
+    <Compile Include="Model\Response\MarketplaceAccountFindResponse.cs" />
+    <Compile Include="Model\Response\MarketplaceAccountResponse.cs" />
+    <Compile Include="Model\Response\MarketplaceResponse.cs" />
+    <Compile Include="Model\Response\TransfersResponse.cs" />
+    <Compile Include="Model\Response\SubscriptionsResponse.cs" />
+    <Compile Include="Model\Response\PlansResponse.cs" />
+    <Compile Include="Model\Response\InvoicesResponse.cs" />
+    <Compile Include="Model\Response\PaymentMethodsResponse.cs" />
+    <Compile Include="Model\Response\CustomersResponse.cs" />
+    <Compile Include="Model\Response\CustomerResponse.cs" />
+    <Compile Include="Model\Response\DataEntryResponse.cs" />
+    <Compile Include="Model\Response\InvoiceResponse.cs" />
+    <Compile Include="Model\Response\PaymentMethodResponse.cs" />
+    <Compile Include="Model\Response\PlanResponse.cs" />
+    <Compile Include="Model\Response\SubscriptionResponse.cs" />
+    <Compile Include="Model\Response\TokenResponse.cs" />
+    <Compile Include="Model\Response\TransferResponse.cs" />
+    <Compile Include="IuguApi.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

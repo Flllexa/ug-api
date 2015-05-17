@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 using Flurl.Http;
 using Newtonsoft.Json;
 
-namespace iuguapi
+namespace ugapi
 {
 
     /// <summary>
     /// Singleton Facade api
     /// </summary>
-    public class IuguApi
+    public class UgApi
     {
-        private IuguApi()
+        private UgApi()
         {
         }
 
-        private static readonly IuguApi _iuguApi = new IuguApi();
+        private static readonly UgApi _iuguApi = new UgApi();
 
-        public static IuguApi Iugu
+        public static UgApi Iugu
         {
             get
             {

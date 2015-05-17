@@ -49,9 +49,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ugapi\IuguApi.csproj">
+    <ProjectReference Include="..\ugapi\ugApi.csproj">
       <Project>{dfd0150a-d142-4ff8-812c-8c9537650ada}</Project>
-      <Name>IuguApi</Name>
+      <Name>ugApi</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

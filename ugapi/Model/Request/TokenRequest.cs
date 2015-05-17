@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ug.Model.Response;
 
-namespace ugapi
+namespace Ug.Model.Request
 {
     public class TokenRequest
     {

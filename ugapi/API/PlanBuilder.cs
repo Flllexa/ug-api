@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ug.Model.Request;
+using Ug.Model.Response;
 
-namespace ugapi
+namespace Ug.Api
 {
     public class PlanBuilder : APIBase
     {

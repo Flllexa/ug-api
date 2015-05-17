@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ugapi;
+using Ug;
+using Ug.Api;
+using Ug.Model.Request;
+using Ug.Model.Response;
 
 namespace ug_tests
 {
@@ -31,7 +34,7 @@ namespace ug_tests
             };
 
             var tokenResult = UgApi.Iugu.Token.CreateToken(requestToken);
-            if (tokenResult.errors == null) Console.WriteLine("Token:" + tokenResult.id);
+            if (tokenResult.success) Console.WriteLine("Token:" + tokenResult.id);
             else Console.WriteLine(tokenResult.errors);
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

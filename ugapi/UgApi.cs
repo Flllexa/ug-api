@@ -5,8 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Flurl.Http;
 using Newtonsoft.Json;
+using Ug.Api;
+using Ug.Model.Request;
+using Ug.Model.Response;
 
-namespace ugapi
+namespace Ug
 {
 
     /// <summary>

@@ -10,7 +10,7 @@ using Flurl.Http;
 using System.Web;
 using System.Collections;
 
-namespace ugapi
+namespace Ug.Api
 {
     public class APIBase
     {

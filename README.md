@@ -1,4 +1,9 @@
 API for IUGU - http://iugu.com
+
+To install ug-api, run the following command in the Package Manager Console
+
+PM> Install-Package ug-api
+
 # Token for payments
 
             // information data 

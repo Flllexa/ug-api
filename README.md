@@ -1,3 +1,3 @@
-# ug-api
+# ug-api (API for IUGU (iugu.com))
 
-.NET API complete for iugu.
+API .NET 100% complete for iugu.

@@ -49,9 +49,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ugapi\ugApi.csproj">
+    <ProjectReference Include="..\ugapi\ugapi.csproj">
       <Project>{dfd0150a-d142-4ff8-812c-8c9537650ada}</Project>
-      <Name>ugApi</Name>
+      <Name>ugapi</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

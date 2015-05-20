@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ugapi</RootNamespace>
-    <AssemblyName>ugApi</AssemblyName>
+    <AssemblyName>ug-api</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="API\MarketplaceAccountBuilder.cs" />
     <Compile Include="API\MarketplaceBuilder.cs" />
+    <Compile Include="API\ShortcutsBuilder.cs" />
     <Compile Include="API\TransferBuilder.cs" />
     <Compile Include="API\SubscriptionBuilder.cs" />
     <Compile Include="API\PlanBuilder.cs" />

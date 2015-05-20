@@ -35,10 +35,10 @@ namespace Ug.Model.Response
         public object in_trial { get; set; }
         public int credits { get; set; }
         public bool credits_based { get; set; }
-        public object recent_invoices { get; set; }
-        public List<SubscriptionSubitem> subitems { get; set; }
-        public List<SubscriptionLog> logs { get; set; }
-        public List<CustomVariables> custom_variables { get; set; }
+        public InvoiceResponse[] recent_invoices { get; set; }
+        public SubscriptionSubitem[] subitems { get; set; }
+        public SubscriptionLog[] logs { get; set; }
+        public CustomVariables[] custom_variables { get; set; }
         public dynamic errors { get; set; }
     }
 

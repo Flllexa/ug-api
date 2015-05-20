@@ -15,19 +15,10 @@ namespace Ug.Api
             BaseURI += "/payment_token";
         }
 
-        public TResult Create<TResult>(TokenRequest request) where TResult : ITransation
+        public async Task<TokenResponse> Create(TokenRequest request)
         {
-            dynamic context = null;
-
-            switch (typeof(TResult).Name)
-            {
-                case "TokenResponse":
-                    context = request.RequestToken;
-                    break;
-            }
-
-            var result = PostWithoutApiKeyAsync<TResult>(context).Result;
-            return result;
+            var result = PostWithoutApiKeyAsync<TokenResponse>(request.RequestToken);
+            return await result;
         }      
 
     }

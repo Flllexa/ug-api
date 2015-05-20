@@ -15,52 +15,58 @@ namespace Ug.Api
             BaseURI += "/invoices";
         }
 
-        public InvoiceResponse Create(InvoiceRequest request)
+        public async Task<InvoiceResponse> Create(InvoiceRequest request)
         {
-            var result = PostAsync<InvoiceResponse>(request.CompleteInvoice).Result;
-            return result;
+            var result = PostAsync<InvoiceResponse>(request.CompleteInvoice);
+            return await result;
         }
 
-        public InvoiceResponse Get(string uid)
+        public async Task<InvoiceResponse> Get(string uid)
         {
-            var result = GetAsync<InvoiceResponse>(uid).Result;
-            return result;
+            var result = GetAsync<InvoiceResponse>(uid);
+            return await result;
         }
 
-        public InvoiceResponse Change(string uid, InvoiceRequest request)
+        public async Task<InvoiceResponse> Change(string uid, InvoiceRequest request)
         {
-            var result = PutAsync<InvoiceResponse>(uid, request.CompleteInvoice).Result;
-            return result;
+            var result = PutAsync<InvoiceResponse>(uid, request.CompleteInvoice);
+            return await result;
         }
 
-        public InvoiceResponse Capture(string uid)
+        public async Task<InvoiceResponse> Change(string uid, dynamic request)
         {
-            var result = PostAsync<InvoiceResponse>(uid + "/capture").Result;
-            return result;
+            var result = PutAsync<InvoiceResponse>(uid, request);
+            return await result;
         }
 
-        public InvoiceResponse Cancel(string uid)
+        public async Task<InvoiceResponse> Capture(string uid)
         {
-            var result = PutAsync<InvoiceResponse>(uid + "/cancel").Result;
-            return result;
+            var result = PostAsync<InvoiceResponse>(uid + "/capture");
+            return await result;
         }
 
-        public InvoiceResponse Refund(string uid)
+        public async Task<InvoiceResponse> Cancel(string uid)
         {
-            var result = PostAsync<InvoiceResponse>(uid + "/refund").Result;
-            return result;
+            var result = PutAsync<InvoiceResponse>(uid + "/cancel");
+            return await result;
         }
 
-        public InvoiceResponse Delete(string uid)
+        public async Task<InvoiceResponse> Refund(string uid)
         {
-            var result = DeleteAsync<InvoiceResponse>(uid).Result;
-            return result;
+            var result = PostAsync<InvoiceResponse>(uid + "/refund");
+            return await result;
         }
 
-        public InvoicesResponse List(InvoicesRequest request)
+        public async Task<InvoiceResponse> Delete(string uid)
         {
-            var result = GetAsync<InvoicesResponse>(request).Result;
-            return result;
+            var result = DeleteAsync<InvoiceResponse>(uid);
+            return await result;
+        }
+
+        public async Task<InvoicesResponse> List(InvoicesRequest request)
+        {
+            var result = GetAsync<InvoicesResponse>(request);
+            return await result;
         }
 
     }

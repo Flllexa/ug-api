@@ -15,10 +15,10 @@ namespace Ug.Api
             BaseURI += "/marketplace/create_account";
         }
 
-        public MarketplaceResponse Create(MarketplaceRequest request)
+        public async Task<MarketplaceResponse> Create(MarketplaceRequest request)
         {
-            var result = PostAsync<MarketplaceResponse>(request.CreateAccount).Result;
-            return result;
+            var result = PostAsync<MarketplaceResponse>(request.CreateAccount);
+            return await result;
         }
     }
 }

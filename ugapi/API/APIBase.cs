@@ -14,6 +14,8 @@ namespace Ug.Api
 {
     public class APIBase
     {
+        protected HttpClient client = new HttpClient();
+
         #region instancies
         protected Dictionary<string, string> Headers = new Dictionary<string, string>();
 
@@ -207,6 +209,22 @@ namespace Ug.Api
                 result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
                 result.success = false;
                 return result;
+            }
+        }
+
+
+        protected async Task<string> GetStringAsync(object data)
+        {
+            try
+            {
+                return await BaseURI
+                       .WithHeaders(Headers)
+                       .PostJsonAsync(data)
+                       .ReceiveString();
+            }
+            catch (FlurlHttpException ex)
+            {
+                throw;
             }
         }
 

@@ -88,13 +88,25 @@ namespace Ug.Model.Request
             }
         }
 
+        public dynamic Standard
+        {
+            get
+            {
+                return new
+                {
+                    customer_id,
+                    subitems
+                };
+            }
+        }
+
         public dynamic RequestSubscriptionWithCredits
         {
             get
             {
                 return new
                 {
-                    credits_based,
+                    credits_based = true,
                     price_cents,
                     credits_cycle,
                     credits_min,
@@ -113,7 +125,7 @@ namespace Ug.Model.Request
                     plan_identifier,
                     customer_id,
                     subitems,
-                    only_on_charge_success
+                    only_on_charge_success = true
                 };
             }
         }
@@ -124,13 +136,13 @@ namespace Ug.Model.Request
             {
                 return new
                 {
-                    credits_based,
+                    credits_based = true,
                     price_cents,
                     credits_cycle,
                     credits_min,
                     customer_id,
                     subitems,
-                    only_on_charge_success
+                    only_on_charge_success = true
                 };
             }
         }

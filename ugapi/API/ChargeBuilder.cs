@@ -14,7 +14,7 @@ namespace Ug.Api
             BaseURI += "/charge";            
         }
 
-        public TResult Create<TResult>(ChargeRequest request) where TResult : ITransation
+        public async Task<TResult> Create<TResult>(ChargeRequest request) where TResult : ITransation
         {
             dynamic context = null;
 
@@ -30,10 +30,9 @@ namespace Ug.Api
                 case "ChargeCreditcardAntiTheftResponse":
                     context = request.RequestPaymentCreditCardAntiTheft;
                     break;
-                    
             }
 
-            var result = PostAsync<TResult>(context).Result;
+            var result = await PostAsync<TResult>(context);
             return result;
         }      
 

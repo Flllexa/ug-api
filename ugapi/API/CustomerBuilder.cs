@@ -15,34 +15,40 @@ namespace Ug.Api
             BaseURI += "/customers";
         }
 
-        public CustomerResponse Create<TResult>(CustomerRequest request)
+        public async Task<CustomerResponse> Create(CustomerRequest request)
         {
-            var result = PostAsync<CustomerResponse>(request.CreateCustomer).Result;
+            var result = await PostAsync<CustomerResponse>(request.CreateCustomer);
             return result;
         }
 
-        public CustomerResponse Get(string uid)
+        public async Task<CustomerResponse> Get(string uid)
         {
-            var result = GetAsync<CustomerResponse>(uid).Result;
-            return result;
+            var result = GetAsync<CustomerResponse>(uid);
+            return await result;
         }
 
-        public CustomerResponse Change<TResult>(string uid, CustomerRequest request) where TResult : ITransation
+        public async Task<CustomerResponse> Change(string uid, CustomerRequest request)
         {
-            var result = PutAsync<TResult>(uid, request.ChangeCustomer).Result;
-            return result;
+            var result = PutAsync<CustomerResponse>(uid, request.ChangeCustomer);
+            return await result;
         }
 
-        public CustomerResponse Delete(string uid)
+        public async Task<CustomerResponse> Change(string uid, dynamic request)
         {
-            var result = DeleteAsync<CustomerResponse>(uid).Result;
-            return result;
+            var result = PutAsync<CustomerResponse>(uid, request);
+            return await result;
         }
 
-        public CustomersResponse List(CustomersRequest request)
+        public async Task<CustomerResponse> Delete(string uid)
         {
-            var result = GetAsync<CustomersResponse>(request).Result;
-            return result;
+            var result = DeleteAsync<CustomerResponse>(uid);
+            return await result;
+        }
+
+        public async Task<CustomersResponse> List(CustomersRequest request)
+        {
+            var result = GetAsync<CustomersResponse>(request);
+            return await result;
         }
 
     }

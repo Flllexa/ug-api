@@ -23,7 +23,7 @@ namespace Ug.Api
             BaseURI += "/subscriptions";
         }
 
-        public SubscriptionResponse Create(SubscriptionRequest request, SubscriptionType type)
+        public async Task<SubscriptionResponse >Create(SubscriptionRequest request, SubscriptionType type)
         {
             dynamic context = null;
 
@@ -45,82 +45,68 @@ namespace Ug.Api
                     break;
             }
 
-            var result = PostAsync<SubscriptionResponse>(context).Result;
-            return result;
+            var result = PostAsync<SubscriptionResponse>(context);
+            return await result;
         }        
 
-        public SubscriptionResponse Get(string uid)
+        public async Task<SubscriptionResponse >Get(string uid)
         {
-            var result = GetAsync<SubscriptionResponse>(uid).Result;
-            return result;
+            var result = GetAsync<SubscriptionResponse>(uid);
+            return await result;
         }
 
-        public SubscriptionResponse Change(string uid, SubscriptionRequest request, SubscriptionType type)
+        public async Task<SubscriptionResponse >Change(string uid, SubscriptionRequest request)
         {
-            dynamic context = null;
-
-            switch (type)
-            {
-                case SubscriptionType.WithPlan:
-                    context = request.RequestSubscriptionWithPlan;
-                    break;
-                case SubscriptionType.WithCredits:
-                    context = request.RequestSubscriptionWithCredits;
-                    break;
-                case SubscriptionType.WithPlainOnChargeSuccess:
-                    context = request.RequestSubscriptionWithPlanOnChargeSuccess;
-                    break;
-                case SubscriptionType.WithCreditsOnChargeSuccess:
-                    context = request.RequestSubscriptionWithCreditsOnChargeSuccess;
-                    break;
-                default:
-                    break;
-            }
-
-            var result = PutAsync<SubscriptionResponse>(uid, context).Result;
-            return result;
+            var result = PutAsync<SubscriptionResponse>(uid, request);
+            return await result;
         }
 
-        public SubscriptionResponse ChangePlan(string uid, string planIdentifier)
+        public async Task<SubscriptionResponse >Change(string uid, dynamic request)
         {
-            var result = PostAsync<SubscriptionResponse>(uid + "/change_plan/" + planIdentifier).Result;
-            return result;
+            var result = PutAsync<SubscriptionResponse>(uid, request);
+            return await result;
         }
 
-        public SubscriptionResponse Activate(string uid)
+        public async Task<SubscriptionResponse >ChangePlan(string uid, string planIdentifier)
         {
-            var result = PostAsync<SubscriptionResponse>(uid + "/activate").Result;
-            return result;
+            var result = PostAsync<SubscriptionResponse>(uid + "/change_plan/" + planIdentifier);
+            return await result;
         }
 
-        public SubscriptionResponse AddCredits(string uid, int credits)
+        public async Task<SubscriptionResponse >Activate(string uid)
         {
-            var result = PutAsync<SubscriptionResponse>(uid + "/add_credits", new { ID = uid, quantity = credits }).Result;
-            return result;
+            var result = PostAsync<SubscriptionResponse>(uid + "/activate");
+            return await result;
         }
 
-        public SubscriptionResponse RemoveCredits(string uid, int credits)
+        public async Task<SubscriptionResponse >AddCredits(string uid, int credits)
         {
-            var result = PutAsync<SubscriptionResponse>(uid + "/remove_credits", new { ID = uid, quantity = credits }).Result;
-            return result;
+            var result = PutAsync<SubscriptionResponse>(uid + "/add_credits", new { ID = uid, quantity = credits });
+            return await result;
         }
 
-        public SubscriptionResponse Suspend(string uid)
+        public async Task<SubscriptionResponse >RemoveCredits(string uid, int credits)
         {
-            var result = PostAsync<SubscriptionResponse>(uid + "/suspend").Result;
-            return result;
+            var result = PutAsync<SubscriptionResponse>(uid + "/remove_credits", new { ID = uid, quantity = credits });
+            return await result;
         }
 
-        public SubscriptionResponse Delete(string uid)
+        public async Task<SubscriptionResponse >Suspend(string uid)
         {
-            var result = DeleteAsync<SubscriptionResponse>(uid).Result;
-            return result;
+            var result = PostAsync<SubscriptionResponse>(uid + "/suspend");
+            return await result;
         }
 
-        public SubscriptionsResponse List(SubscriptionsRequest request)
+        public async Task<SubscriptionResponse >Delete(string uid)
         {
-            var result = GetAsync<SubscriptionsResponse>(request).Result;
-            return result;
+            var result = DeleteAsync<SubscriptionResponse>(uid);
+            return await result;
+        }
+
+        public async Task<SubscriptionsResponse> List(SubscriptionsRequest request)
+        {
+            var result = GetAsync<SubscriptionsResponse>(request);
+            return await result;
         }
 
     }

@@ -14,6 +14,10 @@ namespace ug_tests
     {
         static void Main(string[] args)
         {
+            var subscription = UgApi.Iugu.Shortcut.Subscription("Persio Flexa", "flllexa@live.com", "076.415.044-85", 20, "Doação", 1, "http://localhost:3456/doacao.html").Result;
+
+            var invoice = UgApi.Iugu.Invoice.Get(subscription.recent_invoices[0].id);
+
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // Token test
             // information data 
@@ -33,7 +37,7 @@ namespace ug_tests
                 }
             };
 
-            var tokenResult = UgApi.Iugu.Token.CreateToken(requestToken);
+            var tokenResult = UgApi.Iugu.Token.Create(requestToken).Result;
             if (tokenResult.success) Console.WriteLine("Token:" + tokenResult.id);
             else Console.WriteLine(tokenResult.errors);
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,7 +64,7 @@ namespace ug_tests
                     email = "test@test.com",
                     phone_prefix = "11",
                     phone = "999999999",
-                    cpf_cnpj = "32779248823",
+                    cpf_cnpj = "076.415.044-85",
                     address = new Address()
                     {
                         street = "Rua Tal",
@@ -75,16 +79,16 @@ namespace ug_tests
 
             ////////////////
             // Creditcard payment using token 
-            var chargeCreditcardResult = UgApi.Iugu.Charge.CreateCreditcardPayment(requestCharge);
+            var chargeCreditcardResult = UgApi.Iugu.Charge.Create<ChargeCreditcardResponse>(requestCharge).Result;
             if (chargeCreditcardResult.success) Console.WriteLine("Creditcard Authorization: " + chargeCreditcardResult.message);
             else Console.WriteLine(chargeCreditcardResult.errors);
 
             Console.WriteLine("");
 
             // Creditcard payment using other test token and the payer info to anti theft
-            tokenResult = UgApi.Iugu.Token.CreateToken(requestToken);
+            tokenResult = UgApi.Iugu.Token.Create(requestToken).Result;
             requestCharge.token = tokenResult.id;
-            var chargeCreditcardWithAntiTheftResult = UgApi.Iugu.Charge.CreateCreditcardAntiTheftPayment(requestCharge);
+            var chargeCreditcardWithAntiTheftResult = UgApi.Iugu.Charge.Create<ChargeCreditcardAntiTheftResponse>(requestCharge).Result;
             if (chargeCreditcardWithAntiTheftResult.success) Console.WriteLine("Creditcard Anti Theft Authorization: " + chargeCreditcardWithAntiTheftResult.message);
             else Console.WriteLine(chargeCreditcardWithAntiTheftResult.errors);
 
@@ -92,7 +96,7 @@ namespace ug_tests
 
             ////////////////
             // BankSlip required test no token
-            var chargeBankSlipResult = UgApi.Iugu.Charge.CreateBankSlipPayment(requestCharge);
+            var chargeBankSlipResult = UgApi.Iugu.Charge.Create<ChargeBankSlipResponse>(requestCharge).Result;
             if (chargeBankSlipResult.success) Console.WriteLine("BankSlip: " + chargeBankSlipResult.url);
             else Console.WriteLine(chargeBankSlipResult.errors);
 
@@ -110,14 +114,14 @@ namespace ug_tests
             };
 
             // create customer
-            var createCustomerResult = UgApi.Iugu.Customer.Create(requestCustomer);
+            var createCustomerResult = UgApi.Iugu.Customer.Create(requestCustomer).Result;
             if (createCustomerResult.success) Console.WriteLine("Create customer: " + createCustomerResult.name + " | " + createCustomerResult.id);
             else Console.WriteLine(createCustomerResult.errors);
 
             Console.WriteLine("");
 
             // get customer
-            var getCustomerResult = UgApi.Iugu.Customer.Get(createCustomerResult.id);
+            var getCustomerResult = UgApi.Iugu.Customer.Get(createCustomerResult.id).Result;
             if (getCustomerResult.success) Console.WriteLine("Get Customer: " + getCustomerResult.name);
             else Console.WriteLine(getCustomerResult.errors);
 
@@ -125,14 +129,14 @@ namespace ug_tests
 
             // change customer
             requestCustomer.name = "Mr Flexa";
-            var changeCustomerResult = UgApi.Iugu.Customer.Change(createCustomerResult.id, requestCustomer);
+            var changeCustomerResult = UgApi.Iugu.Customer.Change(createCustomerResult.id, requestCustomer).Result;
             if (changeCustomerResult.success) Console.WriteLine("Change Customer: " + changeCustomerResult.name);
             else Console.WriteLine(changeCustomerResult.errors);
 
             Console.WriteLine("");
 
             // delete customer
-            var deleteCustomerResult = UgApi.Iugu.Customer.Delete(createCustomerResult.id);
+            var deleteCustomerResult = UgApi.Iugu.Customer.Delete(createCustomerResult.id).Result;
             if (deleteCustomerResult.success) Console.WriteLine("Deleted Customer: " + deleteCustomerResult.name);
             else Console.WriteLine(deleteCustomerResult.errors);
 
@@ -140,7 +144,7 @@ namespace ug_tests
 
             // create for next test
             requestCustomer.name = "User 1";
-            createCustomerResult = UgApi.Iugu.Customer.Create(requestCustomer);
+            createCustomerResult = UgApi.Iugu.Customer.Create(requestCustomer).Result;
             if (createCustomerResult.success) Console.WriteLine("Create customer: " + createCustomerResult.name + " | " + createCustomerResult.id);
             else Console.WriteLine(createCustomerResult.errors);
 
@@ -148,7 +152,7 @@ namespace ug_tests
 
             // create for next test
             requestCustomer.name = "User 2";
-            createCustomerResult = UgApi.Iugu.Customer.Create(requestCustomer);
+            createCustomerResult = UgApi.Iugu.Customer.Create(requestCustomer).Result;
             if (createCustomerResult.success) Console.WriteLine("Create customer: " + createCustomerResult.name + " | " + createCustomerResult.id);
             else Console.WriteLine(createCustomerResult.errors);
 
@@ -156,7 +160,7 @@ namespace ug_tests
 
             // create for next test
             requestCustomer.name = "User 3";
-            createCustomerResult = UgApi.Iugu.Customer.Create(requestCustomer);
+            createCustomerResult = UgApi.Iugu.Customer.Create(requestCustomer).Result;
             if (createCustomerResult.success) Console.WriteLine("Create customer: " + createCustomerResult.name + " | " + createCustomerResult.id);
             else Console.WriteLine(createCustomerResult.errors);
             Console.WriteLine("");
@@ -167,7 +171,7 @@ namespace ug_tests
             };
 
             // list customers
-            var customerListResult = UgApi.Iugu.Customer.List(findCustomer);
+            var customerListResult = UgApi.Iugu.Customer.List(findCustomer).Result;
             if (customerListResult.success) Console.WriteLine("Customers Total: " + customerListResult.totalItems);
             else Console.WriteLine(customerListResult.errors);
 
@@ -193,12 +197,12 @@ namespace ug_tests
                 description = "Payment description",
                 item_type = "credit_card",
                 set_as_default = true,
-                token = UgApi.Iugu.Token.CreateToken(requestToken).id
+                token = UgApi.Iugu.Token.Create(requestToken).Result.id
             };
 
             // create payment method without token
             paymentRequest.description = "First payment option";
-            var createPaymentMethodResult = UgApi.Iugu.PaymentMethod.Create(paymentRequest, PaymentType.WithoutToken);
+            var createPaymentMethodResult = UgApi.Iugu.PaymentMethod.Create(paymentRequest, PaymentType.WithoutToken).Result;
             if (createPaymentMethodResult.success) Console.WriteLine("Payment method with token: " + createPaymentMethodResult.item_type + " | " + createPaymentMethodResult.description);
             else Console.WriteLine(createPaymentMethodResult.errors);
 
@@ -206,7 +210,7 @@ namespace ug_tests
 
             // create payment method with token
             paymentRequest.description = "Second payment option";
-            var createPaymentMethodWithTokenResult = UgApi.Iugu.PaymentMethod.Create(paymentRequest, PaymentType.WithToken);
+            var createPaymentMethodWithTokenResult = UgApi.Iugu.PaymentMethod.Create(paymentRequest, PaymentType.WithToken).Result;
             if (createPaymentMethodWithTokenResult.success) Console.WriteLine("Payment method without token: " + createPaymentMethodWithTokenResult.item_type + " | " + createPaymentMethodWithTokenResult.description);
             else Console.WriteLine(createPaymentMethodWithTokenResult.errors);
 
@@ -215,28 +219,28 @@ namespace ug_tests
             // change payment method
             paymentRequest.id = createPaymentMethodResult.id; // change the second by first payment method result
             paymentRequest.description = "New payment";
-            var changePaymentMethodResult = UgApi.Iugu.PaymentMethod.Change(createCustomerResult.id, paymentRequest);
+            var changePaymentMethodResult = UgApi.Iugu.PaymentMethod.Change(createCustomerResult.id, paymentRequest).Result;
             if (changePaymentMethodResult.success) Console.WriteLine("Changed payment method from customer: " + createCustomerResult.id + " | " + changePaymentMethodResult.description);
             else Console.WriteLine(changePaymentMethodResult.errors);
 
             Console.WriteLine("");
 
             // get payment method
-            var getPaymentMethodResult = UgApi.Iugu.PaymentMethod.Get(createCustomerResult.id, paymentRequest.id);
+            var getPaymentMethodResult = UgApi.Iugu.PaymentMethod.Get(createCustomerResult.id, paymentRequest.id).Result;
             if (getPaymentMethodResult.success) Console.WriteLine("Get payment from customer: " + getPaymentMethodResult.id + " | " + getPaymentMethodResult.description);
             else Console.WriteLine(getPaymentMethodResult.errors);
 
             Console.WriteLine("");
 
             // get all payments method
-            var getAllPaymentsMethodResult = UgApi.Iugu.PaymentMethod.List(createCustomerResult.id);
+            var getAllPaymentsMethodResult = UgApi.Iugu.PaymentMethod.List(createCustomerResult.id).Result;
             if (getAllPaymentsMethodResult.success) Console.WriteLine("Customer Payments: " + getAllPaymentsMethodResult.Count);
             else Console.WriteLine(getAllPaymentsMethodResult.errors);
 
             Console.WriteLine("");
 
             // delete payment method
-            var deletePaymentMethodResult = UgApi.Iugu.PaymentMethod.Delete(createCustomerResult.id, paymentRequest.id);
+            var deletePaymentMethodResult = UgApi.Iugu.PaymentMethod.Delete(createCustomerResult.id, paymentRequest.id).Result;
             if (deletePaymentMethodResult.success) Console.WriteLine("Deleted payment from customer: " + deletePaymentMethodResult.id + " | " + deletePaymentMethodResult.description);
             else Console.WriteLine(deletePaymentMethodResult.errors);
 
@@ -261,7 +265,7 @@ namespace ug_tests
             };
 
             // create invoice
-            var createInvoiceResult = UgApi.Iugu.Invoice.Create(invoiceRequest);
+            var createInvoiceResult = UgApi.Iugu.Invoice.Create(invoiceRequest).Result;
             if (createInvoiceResult.success) Console.WriteLine("Create Invoice: " + createInvoiceResult.secure_url);
             else Console.WriteLine(createInvoiceResult.errors);
 
@@ -269,49 +273,49 @@ namespace ug_tests
 
             // update invoice
             invoiceRequest.email = "test2@teste2.com";
-            var updateInvoiceResult = UgApi.Iugu.Invoice.Create(invoiceRequest);
+            var updateInvoiceResult = UgApi.Iugu.Invoice.Create(invoiceRequest).Result;
             if (updateInvoiceResult.success) Console.WriteLine("Update Invoice: " + updateInvoiceResult.secure_url);
             else Console.WriteLine(updateInvoiceResult.errors);
 
             Console.WriteLine("");
 
             // get invoice
-            var getInvoiceResult = UgApi.Iugu.Invoice.Get(updateInvoiceResult.id);
+            var getInvoiceResult = UgApi.Iugu.Invoice.Get(updateInvoiceResult.id).Result;
             if (getInvoiceResult.success) Console.WriteLine("Get Invoice: " + getInvoiceResult.secure_url);
             else Console.WriteLine(getInvoiceResult.errors);
 
             Console.WriteLine("");
 
             // list invoice
-            var listInvoiceResult = UgApi.Iugu.Invoice.List(new InvoicesRequest());
+            var listInvoiceResult = UgApi.Iugu.Invoice.List(new InvoicesRequest()).Result;
             if (listInvoiceResult.success) Console.WriteLine("List Invoice: " + listInvoiceResult.totalItems);
             else Console.WriteLine(listInvoiceResult.errors);
 
             Console.WriteLine("");
 
             // capture invoice
-            var captureInvoiceResult = UgApi.Iugu.Invoice.Capture(updateInvoiceResult.id);
+            var captureInvoiceResult = UgApi.Iugu.Invoice.Capture(updateInvoiceResult.id).Result;
             if (captureInvoiceResult.success) Console.WriteLine("Capture Invoice: " + captureInvoiceResult.id);
             else Console.WriteLine(captureInvoiceResult.errors);
 
             Console.WriteLine("");
 
             // refund invoice
-            var refundInvoiceResult = UgApi.Iugu.Invoice.Refund(updateInvoiceResult.id);
+            var refundInvoiceResult = UgApi.Iugu.Invoice.Refund(updateInvoiceResult.id).Result;
             if (refundInvoiceResult.success) Console.WriteLine("Refund Invoice: " + refundInvoiceResult.id);
             else Console.WriteLine(refundInvoiceResult.errors);
 
             Console.WriteLine("");
 
             // cancel invoice
-            var cancelInvoiceResult = UgApi.Iugu.Invoice.Cancel(updateInvoiceResult.id);
+            var cancelInvoiceResult = UgApi.Iugu.Invoice.Cancel(updateInvoiceResult.id).Result;
             if (cancelInvoiceResult.success) Console.WriteLine("Cancel Invoice: " + cancelInvoiceResult.id);
             else Console.WriteLine(cancelInvoiceResult.errors);
 
             Console.WriteLine("");
 
             // delete invoice
-            var deleteInvoiceResult = UgApi.Iugu.Invoice.Delete(updateInvoiceResult.id);
+            var deleteInvoiceResult = UgApi.Iugu.Invoice.Delete(updateInvoiceResult.id).Result;
             if (deleteInvoiceResult.success) Console.WriteLine("Delete Invoice: " + deleteInvoiceResult.id);
             else Console.WriteLine(deleteInvoiceResult.errors);
             Console.WriteLine("");
@@ -337,21 +341,21 @@ namespace ug_tests
             };
 
             // create customer
-            var createPlanResult = UgApi.Iugu.Plan.Create(requestPlan);
+            var createPlanResult = UgApi.Iugu.Plan.Create(requestPlan).Result;
             if (createPlanResult.success) Console.WriteLine("Create Plan: " + createPlanResult.name + " | " + createPlanResult.id);
             else Console.WriteLine(createPlanResult.errors);
 
             Console.WriteLine("");
 
             // get Plan
-            var getPlanResult = UgApi.Iugu.Plan.Get(createPlanResult.id);
+            var getPlanResult = UgApi.Iugu.Plan.Get(createPlanResult.id).Result;
             if (getPlanResult.success) Console.WriteLine("Get Plan: " + getPlanResult.name);
             else Console.WriteLine(getPlanResult.errors);
 
             Console.WriteLine("");
 
             // get Plan
-            var getIdentifierPlanResult = UgApi.Iugu.Plan.GetByIdentifier(requestPlan.identifier);
+            var getIdentifierPlanResult = UgApi.Iugu.Plan.GetByIdentifier(requestPlan.identifier).Result;
             if (getIdentifierPlanResult.success) Console.WriteLine("Get Plan by identifier: " + getIdentifierPlanResult.identifier);
             else Console.WriteLine(getPlanResult.errors);
 
@@ -360,14 +364,14 @@ namespace ug_tests
             // change Plan
             requestPlan.name = "Mr Flexa";
 
-            var changePlanResult = UgApi.Iugu.Plan.Change(createPlanResult.id, requestPlan);
+            var changePlanResult = UgApi.Iugu.Plan.Change(createPlanResult.id, requestPlan).Result;
             if (changePlanResult.success) Console.WriteLine("Change Plan: " + changePlanResult.name);
             else Console.WriteLine(changePlanResult.errors);
 
             Console.WriteLine("");
 
             // delete Plan
-            var deletePlanResult = UgApi.Iugu.Plan.Delete(createPlanResult.id);
+            var deletePlanResult = UgApi.Iugu.Plan.Delete(createPlanResult.id).Result;
             if (deletePlanResult.success) Console.WriteLine("Deleted Plan: " + deletePlanResult.name);
             else Console.WriteLine(deletePlanResult.errors);
 
@@ -377,7 +381,7 @@ namespace ug_tests
             requestPlan.name = "Plan 1";
             requestPlan.identifier = Guid.NewGuid().ToString();
 
-            createPlanResult = UgApi.Iugu.Plan.Create(requestPlan);
+            createPlanResult = UgApi.Iugu.Plan.Create(requestPlan).Result;
             if (createPlanResult.success) Console.WriteLine("Create Plan: " + createPlanResult.name + " | " + createPlanResult.id);
             else Console.WriteLine(createPlanResult.errors);
 
@@ -387,7 +391,7 @@ namespace ug_tests
             requestPlan.name = "Plan 2";
             requestPlan.identifier = Guid.NewGuid().ToString();
 
-            createPlanResult = UgApi.Iugu.Plan.Create(requestPlan);
+            createPlanResult = UgApi.Iugu.Plan.Create(requestPlan).Result;
             if (createPlanResult.success) Console.WriteLine("Create Plan: " + createPlanResult.name + " | " + createPlanResult.id);
             else Console.WriteLine(createPlanResult.errors);
 
@@ -397,7 +401,7 @@ namespace ug_tests
             requestPlan.name = "Plan 3";
             requestPlan.identifier = Guid.NewGuid().ToString();
 
-            createPlanResult = UgApi.Iugu.Plan.Create(requestPlan);
+            createPlanResult = UgApi.Iugu.Plan.Create(requestPlan).Result;
             if (createPlanResult.success) Console.WriteLine("Create Plan: " + createPlanResult.name + " | " + createPlanResult.id);
             else Console.WriteLine(createPlanResult.errors);
 
@@ -409,7 +413,7 @@ namespace ug_tests
             };
 
             // list Plans
-            var PlanListResult = UgApi.Iugu.Plan.List(findPlan);
+            var PlanListResult = UgApi.Iugu.Plan.List(findPlan).Result;
             if (PlanListResult.success) Console.WriteLine("Plans Total: " + PlanListResult.totalItems);
             else Console.WriteLine(PlanListResult.errors);
 
@@ -427,14 +431,17 @@ namespace ug_tests
             };
 
             // create subscription
-            var createSubscriptionResult = UgApi.Iugu.Subscription.Create(requestSubscription, SubscriptionType.WithPlan);
+            var createSubscriptionResult = UgApi.Iugu.Subscription.Create(requestSubscription, SubscriptionType.WithPlan).Result;
             if (createSubscriptionResult.success) Console.WriteLine("Create Subscription with plan: " + createSubscriptionResult.plan_name + " | " + createSubscriptionResult.id);
             else Console.WriteLine(createSubscriptionResult.errors);
 
             Console.WriteLine("");
 
             // change subscription
-            var changeSubscriptionResult = UgApi.Iugu.Subscription.Change(createSubscriptionResult.id, requestSubscription, SubscriptionType.WithPlan);
+            var changeSubscriptionResult = UgApi.Iugu.Subscription.Change(createSubscriptionResult.id, new
+            {
+                requestSubscription.plan_identifier
+            }).Result;
             if (changeSubscriptionResult.success) Console.WriteLine("Change Subscription: " + changeSubscriptionResult.plan_name + " | " + changeSubscriptionResult.id);
             else Console.WriteLine(changeSubscriptionResult.errors);
 
@@ -452,14 +459,14 @@ namespace ug_tests
             };
 
             // create transfer
-            var createTransferResult = UgApi.Iugu.Transfer.Create(requestTransfer);
+            var createTransferResult = UgApi.Iugu.Transfer.Create(requestTransfer).Result;
             if (createTransferResult.success) Console.WriteLine("Create transfer to: " + createTransferResult.receiver.name + " | " + createTransferResult.receiver.id);
             else Console.WriteLine(createTransferResult.errors);
 
             Console.WriteLine("");
 
             // list transfers
-            var transferListResult = UgApi.Iugu.Transfer.List(createTransferResult.id);
+            var transferListResult = UgApi.Iugu.Transfer.List(createTransferResult.id).Result;
             if (transferListResult.success) Console.WriteLine("Transfers sent/receive: " + transferListResult.sent.Length + " | " + transferListResult.received.Length);
             else Console.WriteLine(transferListResult.errors);
 
@@ -476,8 +483,8 @@ namespace ug_tests
                 commission_percent = 30
             };
 
-            var createMarketplaceAccountResult = UgApi.Iugu.Marketplace.Create(requestMarketplaceAccount);
-            if (createMarketplaceAccountResult.success) Console.WriteLine("Create mktplace accont live api/test api: " + createMarketplaceAccountResult.live_api_token + " | " + createMarketplaceAccountResult.test_api_token);
+            var createMarketplaceAccountResult = UgApi.Iugu.Marketplace.Create(requestMarketplaceAccount).Result;
+            if (createMarketplaceAccountResult.success) Console.WriteLine("Create mktplace account live api/test api: " + createMarketplaceAccountResult.live_api_token + " | " + createMarketplaceAccountResult.test_api_token);
             else Console.WriteLine(createMarketplaceAccountResult.errors);
 
             var requestMarketplaceAccountVerification = new MarketplaceAccountRequest()
@@ -503,19 +510,24 @@ namespace ug_tests
                 },
                 files = new MarketplaceFilesRequestModel()
                 {
-                    id = "/home/user1/Desktop/rg.png",
-                    cpf = "/home/user1/Desktop/cpf.png",
-                    activity = "/home/user1/Desktop/contrato.png"
+                    id = @"\home\user1\Desktop\rg.png",
+                    cpf = @"\home\user1\Desktop\cpf.png",
+                    activity = @"\home\user1\Desktop\contrato.png"
                 }
             };
 
-            if(!string.IsNullOrEmpty(createMarketplaceAccountResult.test_api_token))
+            if (!string.IsNullOrEmpty(createMarketplaceAccountResult.test_api_token))
             {
-                UgApi.Iugu.Marketplace.Verification(
-                createMarketplaceAccountResult.account_id,
-                createMarketplaceAccountResult.test_api_token,
-                requestMarketplaceAccountVerification);
-            }            
+                //UgApi.Iugu.Marketplace.Verification(
+                //    createMarketplaceAccountResult.user_token,
+                //    createMarketplaceAccountResult.account_id,
+                //    requestMarketplaceAccountVerification);
+
+                //var str = UgApi.Iugu.Marketplace(
+                //    createMarketplaceAccountResult.user_token,
+                //    createMarketplaceAccountResult.account_id,
+                //    requestMarketplaceAccountVerification);
+            }
 
             Console.Read();
         }

@@ -16,41 +16,47 @@ namespace Ug.Api
             BaseURI += "/plans";
         }
 
-        public PlanResponse Create(PlanRequest request)
+        public async Task<PlanResponse> Create(PlanRequest request)
         {
-            var result = PostAsync<PlanResponse>(request.CreateRequest).Result;
-            return result;
+            var result = PostAsync<PlanResponse>(request.CreateRequest);
+            return await result;
         }
 
-        public PlanResponse Get(string uid)
+        public async Task<PlanResponse> Get(string uid)
         {
-            var result = GetAsync<PlanResponse>(uid).Result;
-            return result;
+            var result = GetAsync<PlanResponse>(uid);
+            return await result;
         }
 
-        public PlanResponse GetByIdentifier(string identifier)
+        public async Task<PlanResponse> GetByIdentifier(string identifier)
         {
             BaseURI += "/identifier";
-            var result = GetAsync<PlanResponse>(identifier).Result;
-            return result;
+            var result = GetAsync<PlanResponse>(identifier);
+            return await result;
         }
 
-        public PlanResponse Change(string uid, PlanRequest request)
+        public async Task<PlanResponse> Change(string uid, PlanRequest request)
         {
-            var result = PutAsync<PlanResponse>(uid, request.ChangeRequest).Result;
-            return result;
+            var result = PutAsync<PlanResponse>(uid, request.ChangeRequest);
+            return await result;
         }
 
-        public PlanResponse Delete(string uid)
+        public async Task<PlanResponse> Change(string uid, dynamic request)
         {
-            var result = DeleteAsync<PlanResponse>(uid).Result;
-            return result;
+            var result = PutAsync<PlanResponse>(uid, request);
+            return await result;
         }
 
-        public PlansResponse List(PlansRequest request)
+        public async Task<PlanResponse> Delete(string uid)
         {
-            var result = GetAsync<PlansResponse>(request).Result;
-            return result;
+            var result = DeleteAsync<PlanResponse>(uid);
+            return await result;
+        }
+
+        public async Task<PlansResponse> List(PlansRequest request)
+        {
+            var result = GetAsync<PlansResponse>(request);
+            return await result;
         }
 
     }

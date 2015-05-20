@@ -41,6 +41,7 @@ namespace Ug.Model.Request
         ///  ('Até R$ 100,00', 'Entre R$ 100,00 e R$ 500,00', 'Mais que R$ 500,00')
         /// </summary>
         public string price_range { get; set; }
+
         public bool physical_products { get; set; }
 
         /// <summary>
@@ -132,6 +133,58 @@ namespace Ug.Model.Request
         /// (required)
         /// </summary>
         public string bank_cc { get; set; }
+
+        //public dynamic PessoaFisica
+        //{
+        //    get
+        //    {
+        //        return new {
+        //            price_range,
+        //            physical_products,
+        //            business_type,
+        //            person_type,
+        //            automatic_transfer,
+        //            cpf,
+        //            name,
+        //            address,
+        //            cep,
+        //            city,
+        //            state,
+        //            telephone,
+        //            bank,
+        //            bank_ag,
+        //            account_type,
+        //            bank_cc
+        //        };
+        //    }
+        //}
+
+        //public dynamic PessoaJuridica {
+        //    get
+        //    {
+        //        return new
+        //        {
+        //            price_range,
+        //            physical_products,
+        //            business_type,
+        //            person_type,
+        //            automatic_transfer,
+        //            cnpj,
+        //            company_name,
+        //            resp_name,
+        //            resp_cpf,
+        //            address,
+        //            cep,
+        //            city,
+        //            state,
+        //            telephone,
+        //            bank,
+        //            bank_ag,
+        //            account_type,
+        //            bank_cc
+        //        };
+        //    }
+        //}
     }
 
     public class MarketplaceFilesRequestModel

@@ -21,7 +21,7 @@ namespace Ug.Api
             BaseURI += "/customers/{0}/payment_methods";
         }
         
-        public PaymentMethodResponse Create(PaymentMethodRequest request, PaymentType type)
+        public async Task<PaymentMethodResponse> Create(PaymentMethodRequest request, PaymentType type)
         {
             BaseURI = string.Format(BaseURI, request.customer_id);
 
@@ -39,43 +39,50 @@ namespace Ug.Api
                     break;
             }
 
-            var result = PostAsync<PaymentMethodResponse>(context).Result;
-            return result;
+            var result = PostAsync<PaymentMethodResponse>(context);
+            return await result;
         }
 
-        public PaymentMethodResponse CreateWithToken(PaymentMethodRequest request)
+        public async Task<PaymentMethodResponse> CreateWithToken(PaymentMethodRequest request)
         {
             BaseURI = string.Format(BaseURI, request.customer_id);
-            var result = PostAsync<PaymentMethodResponse>(request.CreatePaymentWithToken).Result;
-            return result;
+            var result = PostAsync<PaymentMethodResponse>(request.CreatePaymentWithToken);
+            return await result;
         }
 
-        public PaymentMethodResponse Get(string customerid, string uid)
+        public async Task<PaymentMethodResponse> Get(string customerid, string uid)
         {
             BaseURI = string.Format(BaseURI, customerid);
-            var result = GetAsync<PaymentMethodResponse>(uid).Result;
-            return result;
+            var result = GetAsync<PaymentMethodResponse>(uid);
+            return await result;
         }
 
-        public PaymentMethodResponse Change(string customerid, PaymentMethodRequest request)
+        public async Task<PaymentMethodResponse> Change(string customerid, PaymentMethodRequest request)
         {
             BaseURI = string.Format(BaseURI, customerid);
-            var result = PutAsync<PaymentMethodResponse>(request.id, request.ChangePayment).Result;
-            return result;
+            var result = PutAsync<PaymentMethodResponse>(request.id, request.ChangePayment);
+            return await result;
         }
 
-        public PaymentMethodResponse Delete(string customerid, string uid)
+        public async Task<PaymentMethodResponse> Change(string customerid, dynamic request)
         {
             BaseURI = string.Format(BaseURI, customerid);
-            var result = DeleteAsync<PaymentMethodResponse>(uid).Result;
-            return result;
+            var result = PutAsync<PaymentMethodResponse>(request.id, request);
+            return await result;
         }
 
-        public PaymentMethodsResponse List(string customerid)
+        public async Task<PaymentMethodResponse> Delete(string customerid, string uid)
         {
             BaseURI = string.Format(BaseURI, customerid);
-            var result = GetAsync<PaymentMethodsResponse>().Result;
-            return result;
+            var result = DeleteAsync<PaymentMethodResponse>(uid);
+            return await result;
+        }
+
+        public async Task<PaymentMethodsResponse> List(string customerid)
+        {
+            BaseURI = string.Format(BaseURI, customerid);
+            var result = GetAsync<PaymentMethodsResponse>();
+            return await result;
         }
 
     }

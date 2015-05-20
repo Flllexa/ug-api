@@ -15,16 +15,16 @@ namespace Ug.Api
             BaseURI += "/transfers";
         }
         
-        public TransferResponse Create(TransferRequest request)
+        public async Task<TransferResponse> Create(TransferRequest request)
         {
-            var result = PostAsync<TransferResponse>(request.SendTransfer).Result;
-            return result;
+            var result = PostAsync<TransferResponse>(request.SendTransfer);
+            return await result;
         }
 
-        public TransfersResponse List(string uid)
+        public async Task<TransfersResponse> List(string uid)
         {
-            var result = GetAsync<TransfersResponse>(uid).Result;
-            return result;
+            var result = GetAsync<TransfersResponse>(uid);
+            return await result;
         }
 
     }

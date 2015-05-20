@@ -14,10 +14,6 @@ namespace ug_tests
     {
         static void Main(string[] args)
         {
-            var subscription = UgApi.Iugu.Shortcut.Subscription("Persio Flexa", "flllexa@live.com", "076.415.044-85", 20, "Doação", 1, "http://localhost:3456/doacao.html").Result;
-
-            var invoice = UgApi.Iugu.Invoice.Get(subscription.recent_invoices[0].id);
-
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // Token test
             // information data 

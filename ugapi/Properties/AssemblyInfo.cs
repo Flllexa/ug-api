@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ug-api")]
-[assembly: AssemblyDescription("ug-api is a implementation of IUGU payment modules (http://iugu.com)")]
+[assembly: AssemblyDescription("ug-api (https://github.com/Flllexa/ug-api) is a implementation of IUGU payment modules (http://iugu.com)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Flllexa")]
 [assembly: AssemblyProduct("ug-api")]

@@ -10,6 +10,8 @@ namespace Ug.Api
 {
     public class MarketplaceBuilder : APIBase
     {
+        MarketplaceAccountBuilder accountBuilder = new MarketplaceAccountBuilder();
+
         public MarketplaceBuilder()
         {
             BaseURI += "/marketplace/create_account";
@@ -20,5 +22,12 @@ namespace Ug.Api
             var result = PostAsync<MarketplaceResponse>(request.CreateAccount);
             return await result;
         }
+
+        public async Task<MarketplaceAccountResponse> Verification(string uid, string accountId, MarketplaceAccountRequest request)
+        {
+            return await accountBuilder.Verification(uid, accountId, request);
+        }
+
+
     }
 }

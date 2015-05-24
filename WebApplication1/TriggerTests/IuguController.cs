@@ -8,7 +8,7 @@ using ugapi.Model.Trigger;
 
 namespace WebApplication1.api
 {
-    public class IuguController : IuguTriggerApi
+    public class IuguController : IuguApiController
     {
         // GET: Iugu
         public void Get()

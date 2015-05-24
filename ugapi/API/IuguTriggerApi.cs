@@ -87,7 +87,7 @@ namespace Ug.Api
         public TypeTrigger TriggerType { get; set; } 
     }
     
-    public abstract class IuguTriggerApi : ApiController
+    public abstract class IuguApiController : ApiController
     {
         public InvoiceTrigger invoiceTrigger = null;
         public SubscriptionTrigger subscriptionTrigger = null;

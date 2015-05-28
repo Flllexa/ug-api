@@ -515,7 +515,7 @@ namespace ug_tests
             if (!string.IsNullOrEmpty(createMarketplaceAccountResult.test_api_token))
             {
                 var verify = UgApi.Iugu.Marketplace.Verification(
-                    createMarketplaceAccountResult.user_token,
+                    createMarketplaceAccountResult.live_api_token,
                     createMarketplaceAccountResult.account_id,
                     requestMarketplaceAccountVerification).Result;
 

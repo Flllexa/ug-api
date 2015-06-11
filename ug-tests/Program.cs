@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Ug;
 using Ug.Api;
 using Ug.Model.Request;
@@ -473,57 +474,64 @@ namespace ug_tests
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // Marketplace tests
-            var requestMarketplaceAccount = new MarketplaceRequest()
-            {
-                name = "77C2565F6F064A26ABED4255894224F0",
-                commission_percent = 30
-            };
+            //var requestMarketplaceAccount = new MarketplaceRequest()
+            //{
+            //    name = "77C2565F6F064A26ABED4255894224F0",
+            //    commission_percent = 30
+            //};
 
-            var createMarketplaceAccountResult = UgApi.Iugu.Marketplace.Create(requestMarketplaceAccount).Result;
-            if (createMarketplaceAccountResult.success) Console.WriteLine("Create mktplace account live api/test api: " + createMarketplaceAccountResult.live_api_token + " | " + createMarketplaceAccountResult.test_api_token);
-            else Console.WriteLine(createMarketplaceAccountResult.errors);
+            //var createMarketplaceAccountResult = UgApi.Iugu.Marketplace.Create(requestMarketplaceAccount).Result;
+            //if (createMarketplaceAccountResult.success) Console.WriteLine("Create mktplace account live api/test api: " + createMarketplaceAccountResult.live_api_token + " | " + createMarketplaceAccountResult.test_api_token);
+            //else Console.WriteLine(createMarketplaceAccountResult.errors);
 
-            var requestMarketplaceAccountVerification = new MarketplaceAccountRequest()
-            {
-                data = new MarketplaceAccountRequestModel()
-                {
-                    price_range = "Até R$ 100,00",
-                    physical_products = false,
-                    business_type = "Serviços de Limpeza",
-                    person_type = "Pessoa Física",
-                    automatic_transfer = true,
-                    cpf = "123.123.123-12",
-                    name = "Nome da Pessoa",
-                    address = "Av. Paulista 320 cj 10",
-                    cep = "01419-000",
-                    city = "São Paulo",
-                    state = "São Paulo",
-                    telephone = "11-91231-1234",
-                    bank = "Itaú",
-                    bank_ag = "1234",
-                    account_type = "Corrente",
-                    bank_cc = "11231-2"
-                },
-                files = new MarketplaceFilesRequestModel()
-                {
-                    id = @"\home\user1\Desktop\rg.png",
-                    cpf = @"\home\user1\Desktop\cpf.png",
-                    activity = @"\home\user1\Desktop\contrato.png"
-                }
-            };
+            //var requestMarketplaceAccountVerification = new MarketplaceAccountRequest()
+            //{
+            //    data = new MarketplaceAccountRequestModel()
+            //    {
+            //        price_range = "Até R$ 100,00",
+            //        physical_products = false,
+            //        business_type = "Serviços de Limpeza",
+            //        person_type = "Pessoa Física",
+            //        automatic_transfer = true,
+            //        cpf = "123.123.123-12",
+            //        name = "Nome da Pessoa",
+            //        address = "Av. Paulista 320 cj 10",
+            //        cep = "01419-000",
+            //        city = "São Paulo",
+            //        state = "São Paulo",
+            //        telephone = "11-91231-1234",
+            //        bank = "Itaú",
+            //        bank_ag = "1234",
+            //        account_type = "Corrente",
+            //        bank_cc = "11231-2"
+            //    },
+            //    files = new MarketplaceFilesRequestModel()
+            //    {
+            //        id = @"\home\user1\Desktop\rg.png",
+            //        cpf = @"\home\user1\Desktop\cpf.png",
+            //        activity = @"\home\user1\Desktop\contrato.png"
+            //    }
+            //};
 
-            if (!string.IsNullOrEmpty(createMarketplaceAccountResult.test_api_token))
-            {
-                var verify = UgApi.Iugu.Marketplace.Verification(
-                    createMarketplaceAccountResult.live_api_token,
-                    createMarketplaceAccountResult.account_id,
-                    requestMarketplaceAccountVerification).Result;
+            //if (!string.IsNullOrEmpty(createMarketplaceAccountResult.test_api_token))
+            //{
+            //    var verify = UgApi.Iugu.Marketplace.Verification(
+            //        createMarketplaceAccountResult.live_api_token,
+            //        createMarketplaceAccountResult.account_id,
+            //        requestMarketplaceAccountVerification).Result;
 
-                //var str = UgApi.Iugu.Marketplace(
-                //    createMarketplaceAccountResult.user_token,
-                //    createMarketplaceAccountResult.account_id,
-                //    requestMarketplaceAccountVerification);
-            }
+            //    //var str = UgApi.Iugu.Marketplace(
+            //    //    createMarketplaceAccountResult.user_token,
+            //    //    createMarketplaceAccountResult.account_id,
+            //    //    requestMarketplaceAccountVerification);
+            //}
+
+            // trigger receive
+            var str = "event=invoice.status_changed&data%5Bid%5D=BD0D2E50678D4747B83DC846F6BCD15B&data%5Bstatus%5D=refunded&data%5Bsubscription_id%5D=1A61C60BDB6A44059C3BF1D4104A9503";
+            var o = QueryStringHelper.QueryStringToDict(str);
+            var json = JsonConvert.SerializeObject(o);
+            // Output the JSON string to the console
+            Console.WriteLine(json);
 
             Console.Read();
         }

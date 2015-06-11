@@ -17,7 +17,7 @@ namespace WebApplication1.api
 
         [Route("api/iugutriggers")]
         [HttpPost]
-        public override void IuguTriggers([FromBody]TriggerBase value)
+        public override void IuguTriggers([FromBody]string value)
         {
             base.IuguTriggers(value);
         }

@@ -77,6 +77,7 @@
     <Compile Include="API\PaymentBuilder.cs" />
     <Compile Include="API\CustomerBuilder.cs" />
     <Compile Include="API\TokenBuilder.cs" />
+    <Compile Include="Helper\Helper.cs" />
     <Compile Include="Model\Request\MarketplaceAccountRequest.cs" />
     <Compile Include="Model\Request\SubscriptionsRequest.cs" />
     <Compile Include="Model\Request\PlansRequest.cs" />

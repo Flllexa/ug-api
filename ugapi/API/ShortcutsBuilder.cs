@@ -30,7 +30,7 @@ namespace Ug.Api
         /// <param name="payableWith">all, credit_card, bank_slip</param>
         /// <returns></returns>
         public async Task<Ug.Model.Response.SubscriptionResponse> Subscription(
-            string customerName, string email, string cpfCnpj, decimal value, string planName = null, int interval = 12, string return_url = "",
+            string customerName, string email, string cpfCnpj, decimal value, string planName = null, int interval = 1, string return_url = "",
             string notification_url = "", string expired_url = "", string payableWith = "all", string planIdentifier = null)
         {
             var cvalue = string.Format("{0:0}", value * 100);
@@ -59,7 +59,7 @@ namespace Ug.Api
                 {
                     name = planName ?? customerName,
                     identifier = !string.IsNullOrEmpty(planIdentifier) ? planIdentifier : Guid.NewGuid().ToString(),
-                    interval = interval,
+                    interval = 1,
                     payable_with = payableWith,
                     value_cents = cvalue
                 });

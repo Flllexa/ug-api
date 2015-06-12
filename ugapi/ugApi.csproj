@@ -115,6 +115,7 @@
     <Compile Include="Model\Response\SubscriptionResponse.cs" />
     <Compile Include="Model\Response\TokenResponse.cs" />
     <Compile Include="Model\Response\TransferResponse.cs" />
+    <Compile Include="Model\Trigger\AllTrigger.cs" />
     <Compile Include="Model\Trigger\ReferralTrigger.cs" />
     <Compile Include="Model\Trigger\SubscriptionTrigger.cs" />
     <Compile Include="Model\Trigger\InvoiceTrigger.cs" />

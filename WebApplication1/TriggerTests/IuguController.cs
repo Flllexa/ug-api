@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using Ug.Api;
@@ -17,7 +18,7 @@ namespace WebApplication1.api
 
         [Route("api/iugutriggers")]
         [HttpPost]
-        public override void IuguTriggers([FromBody]string value)
+        public override void IuguTriggers([FromBody]TriggerBase value)
         {
             base.IuguTriggers(value);
         }

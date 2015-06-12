@@ -526,12 +526,14 @@ namespace ug_tests
             //    //    requestMarketplaceAccountVerification);
             //}
 
-            // trigger receive
-            var str = "event=invoice.status_changed&data%5Bid%5D=BD0D2E50678D4747B83DC846F6BCD15B&data%5Bstatus%5D=refunded&data%5Bsubscription_id%5D=1A61C60BDB6A44059C3BF1D4104A9503";
-            var o = QueryStringHelper.QueryStringToDict(str);
-            var json = JsonConvert.SerializeObject(o);
-            // Output the JSON string to the console
-            Console.WriteLine(json);
+            //// trigger receive
+            //var str = "event=invoice.status_changed&data%5Bid%5D=BD0D2E50678D4747B83DC846F6BCD15B&data%5Bstatus%5D=refunded&data%5Bsubscription_id%5D=1A61C60BDB6A44059C3BF1D4104A9503";
+            //var o = QueryStringHelper.QueryStringToDict(str);
+            //var json = JsonConvert.SerializeObject(o);
+            //// Output the JSON string to the console
+            //Console.WriteLine(json);
+
+            
 
             Console.Read();
         }

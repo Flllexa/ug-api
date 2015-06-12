@@ -10,6 +10,6 @@ namespace ugapi.Model.Trigger
     {
         public string @event { get; set; }
 
-        public dynamic data { get; set; }
+        public AllTrigger data { get; set; }
     }
 }

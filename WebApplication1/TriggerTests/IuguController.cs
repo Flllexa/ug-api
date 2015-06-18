@@ -18,9 +18,9 @@ namespace WebApplication1.api
 
         [Route("api/iugutriggers")]
         [HttpPost]
-        public override void IuguTriggers([FromBody]TriggerBase value)
+        public override string IuguTriggers([FromBody]TriggerBase value)
         {
-            base.IuguTriggers(value);
+            return base.IuguTriggers(value);
         }
 
         public override void InvoiceReceived(InvoiceTrigger trigger, InvoiceTypeTrigger typeReceived)

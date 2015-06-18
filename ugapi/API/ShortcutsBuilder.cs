@@ -46,11 +46,7 @@ namespace Ug.Api
 
             if(!string.IsNullOrEmpty(planIdentifier))
             {
-                var find = await UgApi.Iugu.Plan.List(new PlansRequest() { query = planIdentifier });
-                if(find.items != null && find.items.Any(c => c.name.Contains(planIdentifier)))
-                {
-                    plan = find.items[0];
-                }
+                plan = await UgApi.Iugu.Plan.GetByIdentifier(planIdentifier);                
             }
             
             if(plan == null)
@@ -61,18 +57,25 @@ namespace Ug.Api
                     identifier = !string.IsNullOrEmpty(planIdentifier) ? planIdentifier : Guid.NewGuid().ToString(),
                     interval = 1,
                     payable_with = payableWith,
-                    value_cents = cvalue
+                    value_cents = "0"
                 });
-            }            
-            
+            }
 
             var subscription = await UgApi.Iugu.Subscription.Create(new SubscriptionRequest()
             {               
                 expires_at = DateTime.UtcNow.AddDays(3).ToString("dd/MM/yyyy"),
                 plan_identifier = plan.identifier,
                 customer_id = customer.id,
-                price_cents = cvalue,
-                payable_with = payableWith
+                price_cents = "0",
+                payable_with = payableWith,
+                subitems = new SubscriptionItem[] {
+                    new SubscriptionItem() {
+                        description = plan.name,
+                        price_cents = cvalue,
+                        quantity = 1,
+                        recurrent = true
+                    }
+                },
             }, SubscriptionType.WithPlan);
 
             return subscription;

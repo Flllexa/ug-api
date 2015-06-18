@@ -101,12 +101,14 @@ namespace Ug.Api
 
         [Route("api/iugutriggers")]
         [HttpPost]
-        public virtual void IuguTriggers([FromBody]TriggerBase value)
+        public virtual string IuguTriggers([FromBody]TriggerBase value)
         {
             //var o = QueryStringHelper.QueryStringToDict(value);
             //var json = JsonConvert.SerializeObject(o);
             //ReceiveTrigger(JsonConvert.DeserializeObject<TriggerBase>(json));         
             ReceiveTrigger(value);
+
+            return "conclued";
         }
 
         private void ReceiveTrigger(TriggerBase value)

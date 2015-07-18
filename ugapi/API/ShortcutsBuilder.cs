@@ -55,7 +55,7 @@ namespace Ug.Api
                 {
                     name = planName ?? customerName,
                     identifier = !string.IsNullOrEmpty(planIdentifier) ? planIdentifier : Guid.NewGuid().ToString(),
-                    interval = 1,
+                    interval = interval,
                     payable_with = payableWith,
                     value_cents = "0"
                 });

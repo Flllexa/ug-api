@@ -133,7 +133,14 @@ namespace Ug.Api
             catch (FlurlHttpException ex)
             {
                 var result = (TResult)Activator.CreateInstance<TResult>();
-                result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                if (ex.Call != null && ex.Call.ErrorResponseBody != null)
+                {
+                    result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                }
+                else
+                {
+                    result.errors = ex.Message;
+                }
                 result.success = false;
                 return result;
             }
@@ -150,7 +157,14 @@ namespace Ug.Api
             catch (FlurlHttpException ex)
             {
                 var result = (TResult)Activator.CreateInstance<TResult>();
-                result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                if (ex.Call != null && ex.Call.ErrorResponseBody != null)
+                {
+                    result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                }
+                else
+                {
+                    result.errors = ex.Message;
+                }
                 result.success = false;
                 return result;
             }
@@ -169,7 +183,14 @@ namespace Ug.Api
             catch (FlurlHttpException ex)
             {
                 var result = (TResult)Activator.CreateInstance<TResult>();
-                result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                if (ex.Call != null && ex.Call.ErrorResponseBody != null)
+                {
+                    result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                }
+                else
+                {
+                    result.errors = ex.Message;
+                }
                 result.success = false;
                 return result;
             }
@@ -188,7 +209,14 @@ namespace Ug.Api
             catch (FlurlHttpException ex)
             {
                 var result = (TResult)Activator.CreateInstance<TResult>();
-                result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                if (ex.Call != null && ex.Call.ErrorResponseBody != null)
+                {
+                    result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                }
+                else
+                {
+                    result.errors = ex.Message;
+                }
                 result.success = false;
                 return result;
             }
@@ -206,7 +234,16 @@ namespace Ug.Api
             catch (FlurlHttpException ex)
             {
                 var result = (TResult)Activator.CreateInstance<TResult>();
-                result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+
+                if(ex.Call != null && ex.Call.ErrorResponseBody != null)
+                {
+                    result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                }
+                else
+                {
+                    result.errors = ex.Message;
+                }
+                
                 result.success = false;
                 return result;
             }
@@ -240,7 +277,16 @@ namespace Ug.Api
             catch (FlurlHttpException ex)
             {
                 var result = (TResult)Activator.CreateInstance<TResult>();
-                result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+
+                if (ex.Call != null && ex.Call.ErrorResponseBody != null)
+                {
+                    result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                }
+                else
+                {
+                    result.errors = ex.Message;
+                }
+
                 result.success = false;
                 return result;
             }
@@ -258,7 +304,14 @@ namespace Ug.Api
             catch (FlurlHttpException ex)
             {
                 var result = (TResult)Activator.CreateInstance<TResult>();
-                result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                if (ex.Call != null && ex.Call.ErrorResponseBody != null)
+                {
+                    result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                }
+                else
+                {
+                    result.errors = ex.Message;
+                }
                 result.success = false;
                 return result;
             }
@@ -276,7 +329,14 @@ namespace Ug.Api
             catch (FlurlHttpException ex)
             {
                 var result = (TResult)Activator.CreateInstance<TResult>();
-                result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                if (ex.Call != null && ex.Call.ErrorResponseBody != null)
+                {
+                    result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                }
+                else
+                {
+                    result.errors = ex.Message;
+                }
                 result.success = false;
                 return result;
             }
@@ -294,7 +354,14 @@ namespace Ug.Api
             catch (FlurlHttpException ex)
             {
                 var result = (TResult)Activator.CreateInstance<TResult>();
-                result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                if (ex.Call != null && ex.Call.ErrorResponseBody != null)
+                {
+                    result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                }
+                else
+                {
+                    result.errors = ex.Message;
+                }
                 result.success = false;
                 return result;
             }
@@ -312,7 +379,14 @@ namespace Ug.Api
             catch (FlurlHttpException ex)
             {
                 var result = (TResult)Activator.CreateInstance<TResult>();
-                result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                if (ex.Call != null && ex.Call.ErrorResponseBody != null)
+                {
+                    result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                }
+                else
+                {
+                    result.errors = ex.Message;
+                }
                 result.success = false;
                 return result;
             }
@@ -330,7 +404,14 @@ namespace Ug.Api
             catch (FlurlHttpException ex)
             {
                 var result = (TResult)Activator.CreateInstance<TResult>();
-                result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                if (ex.Call != null && ex.Call.ErrorResponseBody != null)
+                {
+                    result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                }
+                else
+                {
+                    result.errors = ex.Message;
+                }
                 result.success = false;
                 return result;
             }

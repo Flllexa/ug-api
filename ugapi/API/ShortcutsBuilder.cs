@@ -49,7 +49,7 @@ namespace Ug.Api
                 plan = await UgApi.Iugu.Plan.GetByIdentifier(planIdentifier);                
             }
             
-            if(plan == null)
+            if(plan == null || !plan.success)
             {
                 plan = await UgApi.Iugu.Plan.Create(new PlanRequest()
                 {

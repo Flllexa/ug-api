@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flurl.Http;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,9 +47,36 @@ namespace Ug.Api
                     break;
             }
 
-            var result = PostAsync<SubscriptionResponse>(context);
+            var result = PostTestAsync<SubscriptionResponse>(context);
             return await result;
-        }        
+        }
+
+        protected async Task<TResult> PostTestAsync<TResult>(object data) where TResult : ITransation
+        {
+            try
+            {
+                return await "http://postcatcher.in/catchers/56005288c721360300000c04"
+                        .WithHeaders(Headers)
+                        .PostJsonAsync(data)
+                        .ReceiveJson<TResult>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var result = (TResult)Activator.CreateInstance<TResult>();
+
+                if (ex.Call != null && ex.Call.ErrorResponseBody != null)
+                {
+                    result.errors = JsonConvert.DeserializeObject(ex.Call.ErrorResponseBody);
+                }
+                else
+                {
+                    result.errors = ex.Message;
+                }
+
+                result.success = false;
+                return result;
+            }
+        }
 
         public async Task<SubscriptionResponse >Get(string uid)
         {

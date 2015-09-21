@@ -81,6 +81,7 @@ namespace Ug.Model.Request
             {
                 return new
                 {
+                    expires_at,
                     plan_identifier,
                     customer_id,
                     subitems

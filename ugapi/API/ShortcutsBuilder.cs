@@ -63,7 +63,7 @@ namespace Ug.Api
 
             var subscription = await UgApi.Iugu.Subscription.Create(new SubscriptionRequest()
             {               
-                expires_at = DateTime.UtcNow.AddDays(3).ToString("dd/MM/yyyy"),
+                expires_at = DateTime.Now.AddDays(3).ToString("dd/MM/yyyy"),
                 plan_identifier = plan.identifier,
                 customer_id = customer.id,
                 price_cents = "0",

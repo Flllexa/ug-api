@@ -84,6 +84,7 @@ namespace Ug.Model.Request
                     expires_at,
                     plan_identifier,
                     customer_id,
+                    payable_with,
                     subitems
                 };
             }

@@ -77,12 +77,20 @@ namespace Ug.Api
             Headers.Add("Accept-Charset", "utf-8");
             Headers.Add("User-Agent", "Iugu DOTNETLibrary");
             Headers.Add("Accept-Language", "pt-br;q=0.9,pt-BR");
-            Headers.Add("Authorization", "Basic " + Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(ApiKey)));
+
+            try
+            {
+                Headers.Add("Authorization", "Basic " + Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(ApiKey)));
+            }
+            catch
+            {
+                throw new Exception("You need declare your ApiKey on web.config or app.config");
+            }
         } 
         #endregion
 
         #region helper
-        private string GetQueryString(object request, string separator = ",")
+        public string GetQueryString(object request, string separator = ",")
         {
             if (request == null)
                 throw new ArgumentNullException("request");
@@ -364,6 +372,21 @@ namespace Ug.Api
                 }
                 result.success = false;
                 return result;
+            }
+        }
+
+        protected async Task<string> PutAsync(string uid, object data)
+        {
+            try
+            {
+                return await (BaseURI + "/" + uid)
+                        .WithHeaders(Headers)
+                        .PutJsonAsync(data)
+                        .ReceiveString();
+            }
+            catch (FlurlHttpException ex)
+            {
+                return ex.Message;
             }
         }
 

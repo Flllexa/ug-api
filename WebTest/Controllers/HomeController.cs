@@ -13,9 +13,9 @@ namespace WebTest.Controllers
         public async Task<ActionResult> Index()
         {
             var subscription = await UgApi.Iugu.Shortcut.Subscription(
-                       "Persio Flexa",
-                       "flexa@live.com",
-                       "327.792.488-23",
+                       "John Galt",
+                       "jonhgalt@live.com",
+                       "557.579.638-83",
                        30,
                        "Doação",
                        24);

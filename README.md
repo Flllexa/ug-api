@@ -47,7 +47,7 @@ PM> Install-Package ug-api
                     email = "test@test.com",
                     phone_prefix = "11",
                     phone = "999999999",
-                    cpf_cnpj = "32779248823",
+                    cpf_cnpj = "11111111111",
                     address = new Address()
                     {
                         street = "Rua Tal",
